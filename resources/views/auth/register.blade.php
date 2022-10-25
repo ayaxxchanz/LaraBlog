@@ -48,52 +48,48 @@
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" id="name" type="text" name="name"
-                                        required="" placeholder="Name">
+                                    <x-text-input id="name" class="form-control" type="text" name="name"
+                                        :value="old('name')" placeholder="Name" autofocus />
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" id="username" type="text" name="username"
-                                        required="" placeholder="Username">
+                                    <x-text-input id="username" class="form-control" type="text" name="username"
+                                        :value="old('username')" placeholder="Username" />
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" id="email" type="email" name="email"
-                                        required="" placeholder="Email">
+                                    <x-text-input id="email" class="form-control" type="email" name="email"
+                                        :value="old('email')" placeholder="Email" />
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" id="password" type="password" name="password"
-                                        required="" placeholder="Password">
+                                    <x-text-input id="password" class="form-control" type="password" name="password"
+                                        :value="old('password')" placeholder="Password" />
                                 </div>
                             </div>
 
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" id="password_confirmation" type="password"
-                                        name="password_confirmation" required="" placeholder="Password Confirmation">
+                                    <x-text-input id="password_confirmation" class="form-control" type="password"
+                                        name="password_confirmation" :value="old('password_confirmation')" placeholder="Confirm Password" />
                                 </div>
                             </div>
 
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
-
-                                    </div>
-                                </div>
-                            </div>
+                            @if ($errors->any())
+                                {!! implode('', $errors->all('<div class="text-danger">:message</div>')) !!}
+                            @endif
 
                             <div class="form-group text-center row mt-3 pt-1">
                                 <div class="col-12">
                                     <button class="btn btn-info w-100 waves-effect waves-light"
-                                        type="submit">Register</button>
+                                        type="submit">{{ __('Register') }}</button>
                                 </div>
                             </div>
 
@@ -113,16 +109,6 @@
         <!-- end container -->
     </div>
     <!-- end -->
-
-
-    <!-- JAVASCRIPT -->
-    <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
-
-    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
 </body>
 
