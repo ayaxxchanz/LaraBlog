@@ -45,31 +45,45 @@
 
                     <div class="p-3">
 
+                        <!-- Session Status -->
+                        @if (Session::has('status'))
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                {{ Session::get('status') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
 
                         <form class="form-horizontal mt-3" method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" id="username" name="username" type="text"
-                                        required="" placeholder="Username">
+                                    <x-text-input id="username" class="form-control" type="text" name="username"
+                                        :value="old('username')" placeholder="Username" required autofocus />
+
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" id="password" name="password" type="password"
-                                        required="" placeholder="Password">
+                                    <x-text-input id="password" class="form-control" type="password" name="password"
+                                        required autocomplete="current-password" placeholder="Password" />
                                 </div>
                             </div>
 
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
+                            @if ($errors->any())
+                                {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+                            @endif
 
-
-                                    </div>
-                                </div>
+                            <!-- Remember Me -->
+                            <div class="block mt-4">
+                                <label for="remember_me" class="inline-flex items-center">
+                                    <input id="remember_me" type="checkbox"
+                                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                        name="remember">
+                                    <span class="text-muted">{{ __('Remember me') }}</span>
+                                </label>
                             </div>
 
                             <div class="form-group mb-3 text-center row mt-3 pt-1">
@@ -104,36 +118,6 @@
     <!-- JAVASCRIPT -->
     <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
-
-    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}"
-            switch (type) {
-                case 'info':
-                    toastr.info(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'success':
-                    toastr.success(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'error':
-                    toastr.error(" {{ Session::get('message') }} ");
-                    break;
-            }
-        @endif
-    </script>
 
 </body>
 
