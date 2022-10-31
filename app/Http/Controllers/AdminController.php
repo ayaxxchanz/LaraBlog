@@ -16,7 +16,14 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // Toastr notification message
+
+        $notification = array(
+            'message' => 'You have logged out.',
+            'alert-type' => 'info'
+        );
+
+        return redirect('/login')->with($notification);
     }
 
     public function Profile()
